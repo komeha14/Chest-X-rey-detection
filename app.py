@@ -1,30 +1,36 @@
 import streamlit as st
 from tensorflow.keras.models import load_model
-from PIL import Image
 import numpy as np
+from PIL import Image
 
 # تحميل النموذج
 model = load_model('model.h5')
 
 # عنوان التطبيق
-st.title('Chest X-ray Pneumonia Detection')
+st.title('Chest X-ray Pneumonia Detection App')
 
-# تحميل الصورة
-uploaded_file = st.file_uploader("Upload a Chest X-ray image", type=['png', 'jpg', 'jpeg'])
+# رفع الصورة من المستخدم
+uploaded_file = st.file_uploader("Upload a Chest X-ray image (JPG/PNG)", type=["jpg", "png", "jpeg"])
 
+# التأكد من أن المستخدم رفع صورة
 if uploaded_file is not None:
+    # فتح الصورة باستخدام Pillow
     image = Image.open(uploaded_file)
-    st.image(image, caption='Uploaded Image', use_column_width=True)
 
-    # تحويل الصورة إلى مصفوفة numpy ومعالجتها لتناسب النموذج
-    img_array = np.array(image.resize((150, 150)))  # تعديل الحجم حسب ما يتوقعه النموذج
-    img_array = np.expand_dims(img_array, axis=0)  # إضافة بعد جديد للتوافق مع النموذج
+    # عرض الصورة على التطبيق
+    st.image(image, caption='Uploaded Chest X-ray.', use_column_width=True)
 
-    # توقع باستخدام النموذج
-    prediction = model.predict(img_array)
+    # معالجة الصورة لتناسب المدخلات المطلوبة للنموذج
+    image = image.resize((150, 150))  # التأكد من أن حجم الصورة مناسب للنموذج
+    image = np.array(image)
+    image = image / 255.0  # التطبيع
+    image = np.expand_dims(image, axis=0)
 
-    # عرض النتيجة
+    # توقع النموذج
+    prediction = model.predict(image)
+
+    # عرض النتيجة على المستخدم
     if prediction[0][0] > 0.5:
-        st.write("The model predicts this is Pneumonia.")
+        st.write("The model predicts: Pneumonia")
     else:
-        st.write("The model predicts this is Normal.")
+        st.write("The model predicts: Normal")
