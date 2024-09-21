@@ -1,4 +1,4 @@
 streamlit
-tensorflow
+tensorflow==2.9.0  # أو أي إصدار متوافق مع النموذج الخاص بك
 Pillow
 numpy
