@@ -30,7 +30,7 @@ Chest X-ray images are one of the most common imaging methods used to diagnose p
 
 - [**Mohamed Komeha**](https://github.com/komeha14)
 - [**Sara Sameh**](https://github.com/S378818)
-- **Hajar Emad**: (https://github.com/HajerEma)
+- [**Hajar Emad**](https://github.com/HajerEma)
 
 ## How to Run Locally
 
