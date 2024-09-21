@@ -1,6 +1,6 @@
 # Chest X-Ray Pneumonia Detection
 
-[**Live App**](https://chest-x-rey-detection-8vcv4k4ykh5ecmnqez9hns.streamlit.app/)
+# [**Live App**](https://chest-x-rey-detection-8vcv4k4ykh5ecmnqez9hns.streamlit.app/)
 
 This project is a deep learning application that detects pneumonia from chest X-ray images using a Convolutional Neural Network (CNN) model. The application is built with Streamlit to provide an interactive interface for users to upload X-ray images and get real-time predictions.
 
